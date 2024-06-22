@@ -103,10 +103,9 @@ public class AIManager {
         Module newModel = Module.load(assetFilePath(ctx, "model_cpu.ptl"));
         Tensor outputTensor = newModel.forward(IValue.from(getTensor(bitmap))).toTensor();
         float[] scores = outputTensor.getDataAsFloatArray();
-        int idx = 0;
         Log.i("TAG", "重新识别结果集" + Arrays.toString(scores));
         int maxIdx = getMaxIdx(scores);
-        return "识别结果：" + map.get(idx);
+        return "识别结果：" + map.get(maxIdx);
     }
 
     //获取图片张量
